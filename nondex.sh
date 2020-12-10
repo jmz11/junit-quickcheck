@@ -14,7 +14,7 @@ then
     cd NonDex
     mvn install -DskipTests
     cd ..
-    mvn edu.illinois:nondex-maven-plugin:1.1.3-SNAPSHOT:nondex -DnondexRuns=10 -DfailIfNoTests=false -Dtest=$nondextests
+    mvn -B -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn edu.illinois:nondex-maven-plugin:1.1.3-SNAPSHOT:nondex -DnondexSeed=$(shuf -i 0-65000 -n 1) -DnondexRuns=10 -DfailIfNoTests=false -Dtest=$nondextests
 fi  
 if [ -f ".nondex/*/failures" ]
 then
