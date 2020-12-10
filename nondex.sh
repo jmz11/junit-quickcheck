@@ -6,6 +6,7 @@ then
 fi
 nondextests=$(git diff --name-status --diff-filter=AM $TRAVIS_COMMIT_RANGE | grep /test/ | sed -e 's;.*test/java/;;' -e 's/.java//' -e 's;/;.;g')
 echo $nondextests
+if [ ! -z $nondextests ]
 then
     printf "Running NonDex on tests:\n$nondextests\n"
     nondextests=$(echo $nondextests | tr -s '[:blank:]' ',')
