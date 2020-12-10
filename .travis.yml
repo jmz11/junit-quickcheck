@@ -7,6 +7,11 @@ matrix:
       install: true
     - jdk: openjdk14
       install: true
+  include:
+    - name: NonDex
+    - jdk: openjdk8
+      jdk: openjdk8
+      script: sh nondex.sh
 before_install:
     - sudo apt-get update -qq
 install: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
