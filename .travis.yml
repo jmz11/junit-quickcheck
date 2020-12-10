@@ -7,10 +7,8 @@ matrix:
       install: true
     - jdk: openjdk14
       install: true
-jobs:
-  include:
     - name: NonDex
-    - jdk: openjdk8
+      jdk: openjdk8
       script: sh nondex.sh
 before_install:
     - sudo apt-get update -qq
@@ -26,8 +24,8 @@ branches:
         - 0.6-branch
         - 0.7-branch
         - 0.8-branch
-notifications:
-    email:
-        recipients:
-        - pholser@alumni.rice.edu
+# notifications:
+#     email:
+#         recipients:
+#         - pholser@alumni.rice.edu
 
