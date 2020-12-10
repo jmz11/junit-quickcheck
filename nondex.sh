@@ -10,7 +10,11 @@ if [ ! -z $nondextests ]
 then
     printf "Running NonDex on tests:\n$nondextests\n"
     nondextests=$(echo $nondextests | tr -s '[:blank:]' ',')
-    mvn -B -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn edu.illinois:nondex-maven-plugin:1.1.2:nondex -DnondexRuns=10 -DfailIfNoTests=false -Dtest=$nondextests
+    git clone --depth 1 https://github.com/TestingResearchIllinois/NonDex
+    cd NonDex
+    mvn install -DskipTests
+    cd ..
+    mvn edu.illinois:nondex-maven-plugin:1.1.3-SNAPSHOT:nondex -DnondexRuns=10 -DfailIfNoTests=false -Dtest=$nondextests
 fi  
 if [ -f ".nondex/*/failures" ]
 then
